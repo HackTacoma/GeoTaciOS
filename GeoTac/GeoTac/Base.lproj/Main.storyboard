@@ -31,7 +31,11 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weG-T5-0Lc">
-                                <rect key="frame" x="270" y="562" width="60" height="30"/>
+                                <rect key="frame" x="268" y="504" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="OfE-Lq-Rjf"/>
+                                    <constraint firstAttribute="height" constant="64" id="qV4-qK-wPb"/>
+                                </constraints>
                                 <state key="normal" title="UPLOAD"/>
                                 <connections>
                                     <action selector="uploadCoordinates:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9aV-YS-sCw"/>
@@ -42,7 +46,7 @@
                         <constraints>
                             <constraint firstItem="zcC-4y-Gld" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="6MT-uX-Igy"/>
                             <constraint firstItem="zcC-4y-Gld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7YR-Dz-Mxt"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="weG-T5-0Lc" secondAttribute="bottom" constant="8" id="DN0-AS-Cie"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="weG-T5-0Lc" secondAttribute="bottom" constant="32" id="DN0-AS-Cie"/>
                             <constraint firstItem="weG-T5-0Lc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nus-gH-xLZ"/>
                             <constraint firstItem="zcC-4y-Gld" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="m0x-Yr-m9B"/>
                         </constraints>
