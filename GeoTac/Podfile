@@ -1,0 +1,18 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '9.0'
+use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+
+def the_pods
+   pod 'Alamofire', '~> 3.4'
+   pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+   pod 'CryptoSwift'
+   pod 'Firebase/Storage'
+   pod 'Firebase/Core'
+   pod 'Firebase/Database'
+   pod 'Firebase/RemoteConfig'
+end
+
+target 'GeoTac' do
+    the_pods
+end

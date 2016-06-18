@@ -1,0 +1,6 @@
+framework module Pods_GeoTac {
+  umbrella header "Pods-GeoTac-umbrella.h"
+
+  export *
+  module * { export * }
+}
