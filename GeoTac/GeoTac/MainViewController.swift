@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import Photos
 import Alamofire
 import SwiftyJSON
 import CryptoSwift
@@ -14,6 +16,9 @@ import CryptoSwift
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     var imageData: NSData?
+    var imageExif: [String: AnyObject]?
+    var FirebaseRef: FIRDatabaseReference!
+    
     @IBOutlet weak var uiImageView: UIImageView!
     @IBOutlet weak var uploadButton: UIButton!
     
@@ -28,6 +33,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Camera, target: self, action: #selector(takePhoto))
         self.title = "TACOMA"
         
+        // Firebase
+        FirebaseRef = FIRDatabase.database().reference()
+        
         self.configureButton()
     }
     
@@ -35,6 +43,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func uploadCoordinates(sender: UIButton)
     {
+        var imageID: String!
+        
         let timeStamp = Int(NSDate().timeIntervalSince1970)
         let authString = "timestamp=\(timeStamp)\(Constants.cloudinaryAPI!.secret)"
         let authSignature = authString.sha1()
@@ -62,6 +72,20 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                             {
                                 case .Success(let upload, _, _):
                                     upload.responseJSON() { [unowned self] (response) -> Void in
+                                        
+                                        if let data = response.result.value
+                                        {
+                                            let json = JSON(data)
+                                            let imageID = json["public_id"].stringValue
+                                            
+                                            self.requestExif(imageID)
+                                            
+                                            self.delay(3) {
+                                                self.FirebaseRef.child("imageMetaData").childByAutoId().setValue(self.imageExif)
+                                            }
+                                            
+                                        }
+                                        
                                         let modal = UIAlertController(title: "Success", message: "Thank you for being a good Citizen of Tacoma", preferredStyle: .Alert)
                                         let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
                                         modal.addAction(okAction)
@@ -76,6 +100,17 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                                     print(error)
                             }
         })
+    }
+    
+    private func requestExif(publicID: String)
+    {
+        Alamofire.request(ApiRouter.Admin(publicID)).responseJSON() { (response) -> Void in
+            if let data = response.result.value
+            {
+                let json = JSON(data)
+                self.imageExif = json.dictionaryObject! as [String: AnyObject]
+            }
+        }
     }
     
     //MARK: - VC Methods
@@ -127,13 +162,33 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+    
     //MRK: - UIImagePicker Delegates
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        if let image = info[UIImagePickerControllerReferenceURL] as? NSURL
         {
-            self.imageData = UIImageJPEGRepresentation(image, 0.0)
-            self.uiImageView.image = image
+            let asset = PHAsset.fetchAssetsWithALAssetURLs([image], options: nil)
+            
+            if let firstAsset = asset.firstObject as? PHAsset
+            {
+                let manager = PHImageManager()
+                manager.requestImageDataForAsset(firstAsset, options: nil) { (data) -> Void in
+                    
+                    self.imageData = data.0!
+                    self.uiImageView.image = UIImage(data: self.imageData!)
+                }
+            }
+            
             self.uiImageView.layoutIfNeeded()
             self.configureButton()
             self.dismissViewControllerAnimated(true) { [unowned self] () -> Void in
@@ -142,7 +197,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 
                 timer.fire()
             }
-            
             
         }
     }
