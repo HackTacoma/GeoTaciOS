@@ -11,7 +11,7 @@
 		111E68241D156BFF003045DF /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111E68231D156BFF003045DF /* keys.plist */; };
 		111E68261D156C6F003045DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E68251D156C6F003045DF /* Constants.swift */; };
 		111E68281D15A084003045DF /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E68271D15A084003045DF /* ApiRouter.swift */; };
-		111E682A1D1600EC003045DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111E68291D1600EC003045DF /* GoogleService-Info.plist */; };
+		111E682C1D1621E3003045DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111E682B1D1621E3003045DF /* GoogleService-Info.plist */; };
 		4F4068CB9A610F29B1763CF8 /* Pods_GeoTac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CCED292821D1A36B224D51 /* Pods_GeoTac.framework */; };
 		DA72A2F31D15463400B45227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72A2F21D15463400B45227 /* AppDelegate.swift */; };
 		DA72A2F81D15463400B45227 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA72A2F61D15463400B45227 /* Main.storyboard */; };
@@ -24,7 +24,7 @@
 		111E68231D156BFF003045DF /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		111E68251D156C6F003045DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		111E68271D15A084003045DF /* ApiRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
-		111E68291D1600EC003045DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		111E682B1D1621E3003045DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE2BD84F3A0CC9FE3803B223 /* Pods-GeoTac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoTac.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoTac/Pods-GeoTac.release.xcconfig"; sourceTree = "<group>"; };
 		D70EE39DB733106F99D8610B /* Pods-GeoTac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoTac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoTac/Pods-GeoTac.debug.xcconfig"; sourceTree = "<group>"; };
 		DA72A2EF1D15463400B45227 /* GeoTac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoTac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +55,7 @@
 				DA72A2FB1D15463400B45227 /* LaunchScreen.storyboard */,
 				DA72A2F91D15463400B45227 /* Assets.xcassets */,
 				111E68231D156BFF003045DF /* keys.plist */,
-				111E68291D1600EC003045DF /* GoogleService-Info.plist */,
+				111E682B1D1621E3003045DF /* GoogleService-Info.plist */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 			files = (
 				111E68241D156BFF003045DF /* keys.plist in Resources */,
 				DA72A2FD1D15463400B45227 /* LaunchScreen.storyboard in Resources */,
-				111E682A1D1600EC003045DF /* GoogleService-Info.plist in Resources */,
+				111E682C1D1621E3003045DF /* GoogleService-Info.plist in Resources */,
 				DA72A2FA1D15463400B45227 /* Assets.xcassets in Resources */,
 				DA72A2F81D15463400B45227 /* Main.storyboard in Resources */,
 			);
