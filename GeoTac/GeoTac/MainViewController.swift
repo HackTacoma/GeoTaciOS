@@ -193,7 +193,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.configureButton()
             self.dismissViewControllerAnimated(true) { [unowned self] () -> Void in
                 self.uploadButton.alpha = 0
-                var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.configureButton), userInfo: nil, repeats: false)
+                let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.configureButton), userInfo: nil, repeats: false)
                 
                 timer.fire()
             }
