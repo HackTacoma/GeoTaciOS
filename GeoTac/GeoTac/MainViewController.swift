@@ -16,6 +16,7 @@ import CryptoSwift
 class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     var imageData: NSData?
+    var currentImageLocation: CLLocation?
     var imageExif: [String: AnyObject]?
     var FirebaseRef: FIRDatabaseReference!
     
@@ -174,30 +175,49 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //MRK: - UIImagePicker Delegates
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
+        var image: UIImage!
         
-        if let image = info[UIImagePickerControllerReferenceURL] as? NSURL
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
-            let asset = PHAsset.fetchAssetsWithALAssetURLs([image], options: nil)
+            image = originalImage
+        }
+        
+        switch picker.sourceType {
             
-            if let firstAsset = asset.firstObject as? PHAsset
+        case .PhotoLibrary, .SavedPhotosAlbum:
+            if let imageURL = info[UIImagePickerControllerReferenceURL] as? NSURL
             {
-                let manager = PHImageManager()
-                manager.requestImageDataForAsset(firstAsset, options: nil) { (data) -> Void in
-                    
-                    self.imageData = data.0!
-                    self.uiImageView.image = UIImage(data: self.imageData!)
+                let result = PHAsset.fetchAssetsWithALAssetURLs([imageURL], options: nil)
+                
+                if let firstAsset = result.firstObject as? PHAsset
+                {
+                    let manager = PHImageManager()
+                    manager.requestImageDataForAsset(firstAsset, options: nil) { (data) -> Void in
+                        
+                        self.imageData = data.0!
+                    }
                 }
             }
             
-            self.uiImageView.layoutIfNeeded()
-            self.configureButton()
-            self.dismissViewControllerAnimated(true) { [unowned self] () -> Void in
-                self.uploadButton.alpha = 0
-                let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.configureButton), userInfo: nil, repeats: false)
-                
-                timer.fire()
-            }
+        case .Camera:
+            print("come up with something")
             
         }
+        
+        self.uiImageView.image = image
+        self.uiImageView.layoutIfNeeded()
+        self.configureButton()
+        
+        self.dismissViewControllerAnimated(true) { [unowned self] () -> Void in
+            self.uploadButton.alpha = 0
+            let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.configureButton), userInfo: nil, repeats: false)
+            
+            timer.fire()
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
