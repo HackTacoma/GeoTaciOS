@@ -163,7 +163,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    func delay(delay:Double, closure:()->()) {
+    func delay(delay: Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
                 DISPATCH_TIME_NOW,
@@ -206,7 +206,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.uiImageView.image = image
         self.uiImageView.layoutIfNeeded()
-        self.configureButton()
         
         self.dismissViewControllerAnimated(true) { [unowned self] () -> Void in
             self.uploadButton.alpha = 0

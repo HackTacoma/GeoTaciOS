@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zcC-4y-Gld">
-                                <rect key="frame" x="75" y="128" width="450" height="450"/>
+                                <rect key="frame" x="15" y="80" width="570" height="570"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zcC-4y-Gld" secondAttribute="height" multiplier="1:1" id="AEb-GL-EE6"/>
                                     <constraint firstAttribute="width" secondItem="zcC-4y-Gld" secondAttribute="height" multiplier="15:8" id="Jpt-7F-G5q"/>
@@ -31,10 +31,10 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weG-T5-0Lc">
-                                <rect key="frame" x="268" y="504" width="64" height="64"/>
+                                <rect key="frame" x="258" y="484" width="84" height="84"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="OfE-Lq-Rjf"/>
-                                    <constraint firstAttribute="height" constant="64" id="qV4-qK-wPb"/>
+                                    <constraint firstAttribute="width" constant="84" id="OfE-Lq-Rjf"/>
+                                    <constraint firstAttribute="height" constant="84" id="qV4-qK-wPb"/>
                                 </constraints>
                                 <state key="normal" title="UPLOAD"/>
                                 <connections>
@@ -44,11 +44,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zcC-4y-Gld" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="6MT-uX-Igy"/>
+                            <constraint firstItem="zcC-4y-Gld" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.95" id="6MT-uX-Igy"/>
                             <constraint firstItem="zcC-4y-Gld" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7YR-Dz-Mxt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="weG-T5-0Lc" secondAttribute="bottom" constant="32" id="DN0-AS-Cie"/>
                             <constraint firstItem="weG-T5-0Lc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nus-gH-xLZ"/>
-                            <constraint firstItem="zcC-4y-Gld" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="64" id="m0x-Yr-m9B"/>
+                            <constraint firstItem="zcC-4y-Gld" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="m0x-Yr-m9B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6m7-oR-4T1"/>
